@@ -4,6 +4,10 @@ const path = require('path');
 const app = express();
 const staticPath = path.join(__dirname, 'static');
 
+app.get('/', (req, res) => {
+  res.send('Este es el servidor de origen');
+});
+
 app.get('/data/:filename', (req, res) => {
   const filename = req.params.filename;
   res.sendFile(filename, { root: staticPath }, (err) => {
