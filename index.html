@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN pro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .columna {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #contenedor-dinamico {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        #imagen-container {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: calc(90vh - 20px);
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="columna">
+        <button onclick="mostrarImagen('imagen_1')">Imagen 1</button>
+        <button onclick="mostrarImagen('imagen_2')">Imagen 2</button>
+        <button onclick="mostrarImagen('imagen_3')">Imagen 3</button>
+        <button onclick="borrarCache()">Borrar Caché</button>
+
+        <div id="contenedor-dinamico"></div>
+    </div>
+
+    <div class="columna" id="imagen-container"></div>
+
+    <script>
+        function mostrarImagen(imagen) {
+            var startTime = new Date().getTime(); // Tiempo de inicio
+            var rutaImagen = `/data/${imagen}.jpg`;
+            var endTime = new Date().getTime();
+            document.getElementById('imagen-container').innerHTML = '<img src="' + rutaImagen + '" alt="' + imagen + '">';
+            var tiempoTranscurrido = endTime - startTime;
+            document.getElementById('contenedor-dinamico').innerText = 'Tiempo transcurrido: ' + tiempoTranscurrido + ' ms';
+        }
+
+        function borrarCache() {
+            // Lógica para borrar la caché (puedes personalizar según tus necesidades)
+            alert('Caché borrada.');
+        }
+    </script>
+</body>
+</html>

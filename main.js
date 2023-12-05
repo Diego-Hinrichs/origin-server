@@ -5,7 +5,7 @@ const app = express();
 const staticPath = path.join(__dirname, 'static');
 
 app.get('/', (req, res) => {
-  res.send('Este es el servidor de origen');
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/data/:filename', (req, res) => {
